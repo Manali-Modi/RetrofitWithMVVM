@@ -1,34 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <data>
+        <variable
+            name="user_data"
+            type="com.example.retrofitwithmvvm.model.Data" />
 
-    <ImageView
-        android:id="@+id/img_avatar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"/>
+        <variable
+            name="avatar"
+            type="String" />
+    </data>
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/txt_name"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:layout_marginLeft="16dp"
-        android:layout_toRightOf="@id/img_avatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/img_avatar"
+            app:avatar="@{avatar}"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
 
-    <TextView
-        android:id="@+id/txt_email_id"
-        android:layout_marginLeft="16dp"
-        android:layout_toRightOf="@id/img_avatar"
-        android:layout_below="@id/txt_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/txt_name"
+            android:text="@{user_data.getFirst_name() + ' ' + user_data.getLast_name()}"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@id/img_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-    <View
-        android:background="@color/design_default_color_primary_dark"
-        android:layout_marginVertical="8dp"
-        android:layout_below="@id/img_avatar"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"/>
-</RelativeLayout>
+        <TextView
+            android:id="@+id/txt_email_id"
+            android:text="@{user_data.getEmail() + '-' + user_data.getId()}"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@id/img_avatar"
+            android:layout_below="@id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:background="@color/design_default_color_primary_dark"
+            android:layout_marginVertical="8dp"
+            android:layout_below="@id/img_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"/>
+    </RelativeLayout>
+
+</layout>

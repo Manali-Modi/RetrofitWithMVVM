@@ -1,5 +1,12 @@
 package com.example.retrofitwithmvvm.model;
 
+import android.net.Uri;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+
+import androidx.databinding.BindingAdapter;
+
 public class Data {
 
     private String id;
@@ -54,5 +61,10 @@ public class Data {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    @BindingAdapter("avatar")
+    public static void loadAvatar(ImageView view, String uri){
+        Glide.with(view.getContext()).load(Uri.parse(uri)).into(view);
     }
 }
